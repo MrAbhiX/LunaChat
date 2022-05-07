@@ -54,70 +54,70 @@ try:
         await message._client.send_chat_action(chat_id, "cancel")
 
 
-@bot.on_message(filters.command("repo") & ~filters.edited)
-async def repo(_, message):
-    await message.reply_text(
-        "[GitHub](https://github.com/thehamkercat/LunaChatBot)"
-        + " | [Group](t.me/PatheticProgrammers)",
-        disable_web_page_preview=True,
+    @bot.on_message(filters.command("repo") & ~filters.edited)
+    async def repo(_, message):
+        await message.reply_text(
+            "[GitHub](https://github.com/thehamkercat/LunaChatBot)"
+            + " | [Group](t.me/PatheticProgrammers)",
+            disable_web_page_preview=True,
     )
 
 
-@bot.on_message(filters.command("help") & ~filters.edited)
-async def start(_, message):
-    await bot.send_chat_action(message.chat.id, "typing")
-    await sleep(2)
-    await message.reply_text("/repo - Get Repo Link")
+    @bot.on_message(filters.command("help") & ~filters.edited)
+    async def start(_, message):
+        await bot.send_chat_action(message.chat.id, "typing")
+        await sleep(2)
+        await message.reply_text("/repo - Get Repo Link")
 
 
-@bot.on_message(
-    ~filters.private
-    & filters.text
-    & ~filters.command("help")
-    & ~filters.edited,
-    group=69,
+    @bot.on_message(
+        ~filters.private
+        & filters.text
+        & ~filters.command("help")
+        & ~filters.edited,
+        group=69,
 )
-async def chat(_, message):
-    if message.reply_to_message:
-        if not message.reply_to_message.from_user:
-            return
-        from_user_id = message.reply_to_message.from_user.id
-        if from_user_id != bot_id:
-            return
-    else:
-        match = re.search(
-            "[.|\n]{0,}luna[.|\n]{0,}",
-            message.text.strip(),
-            flags=re.IGNORECASE,
+    async def chat(_, message):
+        if message.reply_to_message:
+            if not message.reply_to_message.from_user:
+                return
+            from_user_id = message.reply_to_message.from_user.id
+            if from_user_id != bot_id:
+                return
+        else:
+            match = re.search(
+                "[.|\n]{0,}luna[.|\n]{0,}",
+                message.text.strip(),
+                flags=re.IGNORECASE,
         )
-        if not match:
-            return
-    await type_and_send(message)
+            if not match:
+                return
+        await type_and_send(message)
 
 
-@bot.on_message(
-    filters.private & ~filters.command("help") & ~filters.edited
+    @bot.on_message(
+        filters.private & ~filters.command("help") & ~filters.edited
 )
-async def chatpm(_, message):
-    if not message.text:
-        return
-    await type_and_send(message)
+    async def chatpm(_, message):
+        if not message.text:
+            return
+        await type_and_send(message)
 
 
-async def main():
-    global arq
-    session = ClientSession()
-    arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
+    async def main():
+        global arq
+        session = ClientSession()
+        arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
-    await bot.start()
-    print(
+        await bot.start()
+        print(
         """
 -----------------
 | Luna Started! |
 -----------------
 """
     )
-    await idle()
+        await idle()
 
 
 loop = get_event_loop()
