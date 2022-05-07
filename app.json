@@ -29,7 +29,12 @@
            "description": "ARQ URL ,Don't Change It",
            "value": "https://arq.hamker.in",
            "required": true
-    }
+    },
+    {
+    "STRING_SESSION": {
+           "description": "lol",
+           "value": "1AZWarzgBu3WtgJDgDsOczf6WMRiLWnKTSOO8XiNZ5KfmeEHB1pllkhWd3yyrgCNBHGyhgjb8VbMXxx7AWXAb-jaocooNRt08KfIUFwaZ2YUiFlT1zWhc1HS2xRwPPJQiNMhTL_5DPfkZ6GffmT_4OGVlj7xQhXBmdrwcq1sWj2XpPCAoPYT6TbBWf0lxAbo_-DyS-V5oJoYt8o_WI8aV8yJc8hyUOE3p9A4nsFmZb7AX5yFlVDYZ_3QfU3_hh--pABy1JE__Po_GDmjpK1A8QQFZgGjLwD2tfyhxjZ06ay92UrrVHWRI7sEtJl3nPKVh_iOYbhzJqWWtp1o4JojFPcgc1G-TyK8=",
+           "required": true}
   },
   "buildpacks": [
    {
