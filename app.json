@@ -14,10 +14,11 @@
   "env": {
     "bot_token": {
            "description": "Your Bot's Api Token ,Get it from @BotFather",
-           "required": true
+           "required": false
     },
     "ARQ_API_KEY": {
            "description": "Get this from @ARQRobot",
+           "value": "MMQTIE-VFCSMJ-TDDEQW-FYTKUR-ARQ",
            "required": true
     },
     "LANGUAGE": {
