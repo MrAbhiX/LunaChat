@@ -25,7 +25,7 @@ try:
 )
 
 
-arq = None
+    arq = None
 
 
 async def lunaQuery(query: str, user_id: int):
@@ -34,7 +34,7 @@ async def lunaQuery(query: str, user_id: int):
         if LANGUAGE == "hi"
         else (await arq.translate(query, "hi")).result.translatedText
     )
-    resp = (await arq.luna(query, user_id)).result
+    resp = (await arq.bot(query, user_id)).result
     return (
         resp
         if LANGUAGE == "hi"
@@ -65,7 +65,7 @@ async def repo(_, message):
 
 @bot.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
-    await luna.send_chat_action(message.chat.id, "typing")
+    await bot.send_chat_action(message.chat.id, "typing")
     await sleep(2)
     await message.reply_text("/repo - Get Repo Link")
 
