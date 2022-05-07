@@ -13,11 +13,15 @@ if is_config:
 else:
     from sample_config import *
 
-luna = Client(
-    ":memory:",
-    session_name=session_name,
-    api_id=6,
-    api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
+if STRING_SESSION:
+    session = StringSession(str(STRING_SESSION))
+else:
+    session = "ManUserBot"
+try:
+    bot = TelegramClient(
+        session=session,
+        api_id=6,
+        api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
 
@@ -50,7 +54,7 @@ async def type_and_send(message):
     await message._client.send_chat_action(chat_id, "cancel")
 
 
-@luna.on_message(filters.command("repo") & ~filters.edited)
+@bot.on_message(filters.command("repo") & ~filters.edited)
 async def repo(_, message):
     await message.reply_text(
         "[GitHub](https://github.com/thehamkercat/LunaChatBot)"
@@ -59,14 +63,14 @@ async def repo(_, message):
     )
 
 
-@luna.on_message(filters.command("help") & ~filters.edited)
+@bot.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
     await sleep(2)
     await message.reply_text("/repo - Get Repo Link")
 
 
-@luna.on_message(
+@bot.on_message(
     ~filters.private
     & filters.text
     & ~filters.command("help")
@@ -91,7 +95,7 @@ async def chat(_, message):
     await type_and_send(message)
 
 
-@luna.on_message(
+@bot.on_message(
     filters.private & ~filters.command("help") & ~filters.edited
 )
 async def chatpm(_, message):
@@ -105,7 +109,7 @@ async def main():
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
-    await luna.start()
+    await bot.start()
     print(
         """
 -----------------
