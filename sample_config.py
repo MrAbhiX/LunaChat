@@ -2,7 +2,8 @@ HEROKU = True # Make it False if you're not deploying on heroku.
 
 if HEROKU:
     from os import environ
-    
+    import os
+    STRING_SESSION = os.environ.get("STRING_SESSION", None)
     bot_token = environ["bot_token"]
     ARQ_API_KEY = environ["ARQ_API_KEY"]
     LANGUAGE = environ["LANGUAGE"]
