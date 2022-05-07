@@ -6,8 +6,6 @@ from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
 from telethon.sessions import StringSession
-is_config = os.path.exists("config.py")
-from sample_config import *
 
 if STRING_SESSION:
     session = StringSession(str(STRING_SESSION))
