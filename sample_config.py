@@ -1,6 +1,7 @@
 HEROKU = True # Make it False if you're not deploying on heroku.
 
 if HEROKU:
+    import os
     from os import environ
     session_name = os.environ.get("session_name", None)
     bot_token = environ["bot_token"]
