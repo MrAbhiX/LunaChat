@@ -7,11 +7,7 @@ from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
 from telethon.sessions import StringSession
 is_config = os.path.exists("config.py")
-
-if is_config:
-    from config import *
-else:
-    from sample_config import *
+from sample_config import *
 
 if STRING_SESSION:
     session = StringSession(str(STRING_SESSION))
